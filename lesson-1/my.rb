@@ -44,9 +44,9 @@ end
 5
 
 class String
- def -(value)
-   self.delete(value)
- end
+  def -(value)
+    self.delete(value)
+  end
 end
 
-p "Hello, my Ruby world!" - "om"
+puts "Hello, my Ruby world!" - "om"

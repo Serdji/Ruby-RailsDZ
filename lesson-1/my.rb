@@ -44,9 +44,9 @@ end
 5
 
 class String
-  def squeeze value
-    self - value
-  end
+ def -(value)
+   self.delete(value)
+ end
 end
 
-"Hello, my Ruby world!" - "om"
+p "Hello, my Ruby world!" - "om"

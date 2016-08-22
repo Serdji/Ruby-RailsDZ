@@ -27,8 +27,48 @@ p hash
 5
 
 def fibonacci(n)
-    return 1 if n < 3
-    fibonacci(n - 1) + fibonacci(n - 2)
+  return 1 if n < 3
+  fibonacci(n - 1) + fibonacci(n - 2)
 end    
 
-p fibonacci (10)	    
+p fibonacci (11) 
+
+def fib(n)
+  a = 1
+  b = 1
+  i = 3
+  (i..n).each do |i|
+    i += 1 
+    c = a + b
+    a = b
+    b = c
+  end
+  return b
+end
+
+p fib (11)
+
+def rot13(str)
+  rot13 = ""
+  lower_case = ("a".."z").to_a.join + "!?&$@/-_;:,." + (0..9).to_a.join
+  upper_case = lower_case.upcase
+  lower_case = lower_case.each_char.to_a
+  upper_case = upper_case.each_char.to_a
+  char = str.each_char.to_a
+  (0...char.length).each do |i|
+    if char[i] == ' '
+      rot13 += ' '           
+    elsif (char[i] == char[i].upcase)
+      loc = upper_case.index(char[i])
+      idx = (loc+13)%26
+      rot13 += upper_case[idx]
+    else
+      loc = lower_case.index(char[i])
+      idx = (loc+13)%26
+      rot13 += lower_case[idx]
+    end
+  end
+  return rot13
+end
+ 
+puts rot13("Lbh unpxrq n irel frperg zrffntr")

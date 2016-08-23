@@ -1,10 +1,20 @@
 
 2
 
-player = { name: 'johnny', color: :red }
+player = { name: 'johnny', color: :green }
 colors = [:blue, :white, :green, :red, :orange]
 
-p player[:color] == colors.sample
+def guess_color(player, colors)
+  if player[:color] == colors.sample
+    "#{player[:name]}, Ты прав!"
+  elsif player[:color].size == colors.sample.size
+    "#{player[:name]}, букв столько же, но значение иное!"
+  else
+    "Все не верно #{player[:name]} :("  
+  end 
+end
+
+p guess_color(player, colors)  
 
 3
 
@@ -56,19 +66,19 @@ def rot13(str)
   upper_case = upper_case.each_char.to_a
   char = str.each_char.to_a
   (0...char.length).each do |i|
-    if char[i] == ' '
-      rot13 += ' '           
+    rot13 += if char[i] == ' '
+      ' '           
     elsif (char[i] == char[i].upcase)
       loc = upper_case.index(char[i])
-      idx = (loc+13)%26
-      rot13 += upper_case[idx]
+      idx = (loc + 13)%26
+      upper_case[idx]
     else
       loc = lower_case.index(char[i])
-      idx = (loc+13)%26
-      rot13 += lower_case[idx]
+      idx = (loc + 13)%26
+      lower_case[idx]
     end
   end
-  return rot13
+  rot13
 end
  
-puts rot13("Lbh unpxrq n irel frperg zrffntr")
+p rot13("Lbh unpxrq n irel frperg zrffntr")
